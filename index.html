@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Eduardo López · Desarrollador Multiplataforma | IA &amp; Backend — Currículum interactivo</title>
+  <meta name="description"
+    content="Currículum interactivo de Eduardo López, desarrollador de aplicaciones multiplataforma especializado en IA y backend: Android, iOS, Python (Django), YOLO, SAM, Ollama, Openclaw. A Coruña, Galicia.">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#030907">
+  <meta name="referrer" content="no-referrer">
+  <!--
+    SEGURIDAD — CSP estricta:
+    · Solo recursos propios ('self') + Google Fonts. Sin scripts ni estilos inline.
+    · Sin conexiones salientes, sin frames, sin plugins.
+    · Recomendación para producción: servir también cabeceras HTTP adicionales
+      (X-Content-Type-Options, X-Frame-Options, Referrer-Policy, HSTS) desde el servidor.
+    · Sin cookies, sin almacenamiento, sin rastreadores.
+    · Todo dato de usuario se renderiza con textContent (nunca innerHTML): inmune a XSS.
+    · Enlaces externos con rel="noopener noreferrer".
+  -->
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://formspree.io; base-uri 'none'; object-src 'none'; form-action 'self' https://formspree.io'">
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23030907'/%3E%3Ctext x='5' y='23' font-family='monospace' font-size='17' fill='%2338ff9b'%3E%3E_%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/nojs.js"></script>
+</head>
+
+<body>
+  <a class="skip" href="#inicio">Saltar al contenido</a>
+
+  <canvas id="lluvia" aria-hidden="true"></canvas>
+  <div class="fx-velo" aria-hidden="true"></div>
+  <div class="fx-scanlines" aria-hidden="true"></div>
+  <div class="fx-ruido" aria-hidden="true"></div>
+  <div class="fx-vineta" aria-hidden="true"></div>
+
+  <noscript>
+    <p class="aviso-noscript">Esta página necesita JavaScript para su experiencia completa, aunque el contenido sigue
+      siendo legible.</p>
+  </noscript>
+
+  <div id="boot" aria-hidden="true">
+    <pre id="boot-txt"></pre>
+  </div>
+
+  <!-- ============ NAVEGACIÓN ============ -->
+  <header class="nav" id="top">
+    <a class="nav-marca" href="#inicio">eduplopez<span>@dev</span>:~$<span class="cursor" aria-hidden="true"></span></a>
+    <nav class="nav-links" aria-label="Navegación principal">
+      <a class="nav-link" href="#inicio">inicio</a>
+      <a class="nav-link" href="#sobre-mi">sobre_mí</a>
+      <a class="nav-link" href="#stack">stack</a>
+      <a class="nav-link" href="#proyectos">proyectos</a>
+      <a class="nav-link" href="#servicios">servicios</a>
+      <a class="nav-link" href="#contacto">contacto</a>
+    </nav>
+    <p class="nav-estado" role="status"><span class="punto" aria-hidden="true"></span>abierto a oportunidades</p>
+    <button class="nav-burger" id="abrir-menu" aria-expanded="false" aria-controls="menu-movil">[ menú ]</button>
+  </header>
+
+  <div class="menu-movil" id="menu-movil" hidden>
+    <div class="menu-cab">
+      <span class="nav-marca">eduplopez<span>@dev</span>:~$</span>
+      <button class="menu-cerrar" id="cerrar-menu">[ cerrar × ]</button>
+    </div>
+    <nav aria-label="Navegación móvil">
+      <a href="#sobre-mi"><small>01</small>sobre_mí</a>
+      <a href="#stack"><small>02</small>stack</a>
+      <a href="#proyectos"><small>03</small>proyectos</a>
+      <a href="#servicios"><small>04</small>servicios</a>
+      <a href="#idiomas"><small>05</small>idiomas</a>
+      <a href="#contacto"><small>06</small>contacto</a>
+    </nav>
+  </div>
+
+  <main id="inicio">
+    <!-- ============ HERO ============ -->
+    <section class="hero contenedor" aria-label="Presentación">
+      <div class="hero-grid">
+        <div class="hero-txt">
+          <p class="hero-cmd"><b>root@portfolio</b>:~# whoami</p>
+          <h1 class="hero-nombre"><span class="glitch" data-text="EDUARDO LÓPEZ">EDUARDO LÓPEZ</span></h1>
+          <p class="hero-rol">// Desarrollador Multiplataforma · Especialista IA &amp; Backend</p>
+          <p class="presenta">Desde A Coruña: construyo aplicaciones móviles multiplataforma, backends con Python y
+            Django, e inteligencia artificial que funciona también en una Raspberry Pi. Esta web es mi currículum.</p>
+          <div class="hero-acciones">
+            <a class="btn btn-solido" href="#proyectos">./ver_proyectos</a>
+            <button class="btn btn-borde" id="btn-imprimir" type="button">imprimir_cv ⎙</button>
+            <a class="btn btn-borde" href="#contacto">ssh contacto</a>
+          </div>
+        </div>
+
+        <div class="terminal tilt" id="terminal">
+          <div class="term-cab">
+            <span class="t-dot d1" aria-hidden="true"></span><span class="t-dot d2" aria-hidden="true"></span><span
+              class="t-dot d3" aria-hidden="true"></span>
+            <span class="term-titulo">eduplopez@portfolio — ~/presentacion</span>
+          </div>
+          <div class="term-cuerpo" id="term-cuerpo">
+            <div id="term-salida" class="term-salida" role="log" aria-live="polite"></div>
+            <form id="term-form" autocomplete="off">
+              <span class="prompt" aria-hidden="true">$</span>
+              <input id="term-in" name="cmd" type="text" aria-label="Terminal interactiva: escribe un comando"
+                placeholder="escribe help" disabled>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <ul class="stats" id="stats" aria-label="Cifras destacadas"></ul>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track" id="ticker-track"></div>
+    </div>
+
+    <!-- ============ SOBRE MÍ ============ -->
+    <section id="sobre-mi" class="contenedor">
+      <header class="sec-head reveal">
+        <p class="sec-cmd mono"><b>$</b> cat ./sobre-mi</p>
+        <h2 class="sec-title" data-decode>Sobre mí</h2>
+        <span class="sec-num" aria-hidden="true">01</span>
+      </header>
+
+      <div class="dos-col">
+        <aside class="aside-sticky reveal">
+          <div class="tarjeta-perfil">
+            <div class="foto-marco">
+              <div class="avatar" role="img" aria-label="Monograma de Eduardo López">
+                <span class="avatar-tag">avatar.raw — 0 KB</span>
+                <span class="avatar-mono" aria-hidden="true">EL</span>
+                <span class="avatar-tag">imagen no publicada · privacidad</span>
+              </div>
+            </div>
+            <dl>
+              <dt>nombre</dt>
+              <dd>Eduardo Pablo López Sánchez</dd>
+              <dt>rol</dt>
+              <dd>Desarrollador Multiplataforma</dd>
+              <dt>formación</dt>
+              <dd>DAM · CPR Afundación</dd>
+              <dt>base</dt>
+              <dd>A Coruña, Galicia</dd>
+              <dt>estado</dt>
+              <dd>Abierto a oportunidades</dd>
+            </dl>
+          </div>
+          <pre class="neofetch" aria-hidden="true"><span class="verde">eduplopez@coruna</span> ─────────
+<span class="ambar">SO</span>      Desarrollo multiplataforma
+<span class="ambar">Núcleo</span>  Python · Django · Android · iOS
+<span class="ambar">IA</span>      YOLO · SAM · Ollama · Openclaw
+<span class="ambar">Lab</span>     Zucchetti Centro Sistemi (IT)
+<span class="ambar">Shell</span>   Linux + Docker</pre>
+        </aside>
+
+        <article class="bio">
+          <div class="reveal">
+            <p>Soy Eduardo, desarrollador de aplicaciones multiplataforma afincado en <strong>A Coruña</strong>. Me
+              muevo entre tres mundos que se complementan: las apps móviles para Android e iOS, el backend con
+              <strong>Python y Django</strong>, y la inteligencia artificial aplicada, desde la visión por ordenador
+              hasta los modelos de lenguaje en local.
+            </p>
+            <p>Me formé en el Laboratorio de IA de <strong>Zucchetti Centro Sistemi</strong> (Italia), donde participé
+              en el ciclo completo de diseño, entrenamiento y validación de modelos, y desarrollé soluciones de
+              automatización para flujos de trabajo corporativos. Proyectos como <strong>Tony</strong> —visión
+              artificial con YOLO y SAM ejecutándose en una Raspberry Pi 5— o <strong>PartyCoruña</strong> —backend de
+              una plataforma de eventos— resumen mi forma de trabajar: problemas reales, tecnología práctica y
+              resultados medibles.</p>
+            <p>Hablo español y gallego nativos, inglés intermedio-avanzado y el italiano justo para defenderme en un
+              laboratorio italiano. Me gusta trabajar con <strong>Linux y Docker</strong>, y con modelos que puedo
+              ejecutar en local: menos nube, más control.</p>
+          </div>
+
+          <ul class="pilares reveal">
+            <li>Visión artificial e IA en local</li>
+            <li>Backend con Python y Django</li>
+            <li>Apps móviles Android e iOS</li>
+            <li>Linux, Docker y automatización</li>
+          </ul>
+
+          <h3 class="subtitulo reveal" id="trayectoria-titulo">~/trayectoria --log</h3>
+          <ul class="trayectoria" id="trayectoria" aria-labelledby="trayectoria-titulo"></ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ STACK ============ -->
+    <section id="stack" class="contenedor">
+      <header class="sec-head reveal">
+        <p class="sec-cmd mono"><b>$</b> neofetch --stack</p>
+        <h2 class="sec-title" data-decode>Stack tecnológico</h2>
+        <span class="sec-num" aria-hidden="true">02</span>
+      </header>
+
+      <div class="stack-grid">
+        <div id="barras"></div>
+        <div class="caja-chips reveal">
+          <h3 class="subtitulo">también_en_el_día_a_día</h3>
+          <ul class="chips" id="chips"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROYECTOS ============ -->
+    <section id="proyectos" class="contenedor">
+      <header class="sec-head reveal">
+        <p class="sec-cmd mono"><b>$</b> ls ./proyectos --destacados</p>
+        <h2 class="sec-title" data-decode>Proyectos</h2>
+        <span class="sec-num" aria-hidden="true">03</span>
+      </header>
+      <div class="proyectos-grid" id="destacados"></div>
+      <div class="cta-proximo reveal">
+        <div>
+          <p>$ git log --oneline --next</p>
+          <p><b>0000000</b> — aquí podría ir tu próximo proyecto</p>
+        </div>
+        <a class="btn btn-solido" href="#contacto">./hacer_commit</a>
+      </div>
+    </section>
+
+    <!-- ============ SERVICIOS ============ -->
+    <section id="servicios" class="contenedor">
+      <header class="sec-head reveal">
+        <p class="sec-cmd mono"><b>$</b> man servicios</p>
+        <h2 class="sec-title" data-decode>Qué puedo hacer por ti</h2>
+        <span class="sec-num" aria-hidden="true">04</span>
+      </header>
+      <ul class="lista-servicios reveal" id="lista-servicios"></ul>
+    </section>
+
+    <!-- ============ IDIOMAS ============ -->
+    <section id="idiomas" class="contenedor">
+      <header class="sec-head reveal">
+        <p class="sec-cmd mono"><b>$</b> locale --all</p>
+        <h2 class="sec-title" data-decode>Idiomas</h2>
+        <span class="sec-num" aria-hidden="true">05</span>
+      </header>
+      <ul class="idiomas" id="idiomas-lista"></ul>
+    </section>
+
+    <!-- ============ CONTACTO ============ -->
+    <section id="contacto">
+      <div class="contenedor">
+        <header class="sec-head reveal">
+          <p class="sec-cmd mono"><b>$</b> ssh contacto@edulopez.dev</p>
+          <h2 class="sec-title" data-decode>Contacto</h2>
+          <span class="sec-num" aria-hidden="true">06</span>
+        </header>
+
+        <div class="contacto-grid">
+          <div class="contacto-info reveal">
+            <p class="intro">¿Buscas un desarrollador que se mueva entre móvil, backend e IA sin cambiar de contexto?
+              Escríbeme y te respondo en menos de 24 horas.</p>
+            <dl class="contacto-datos">
+              <div>
+                <dt>email</dt>
+                <dd><a href="mailto:edup.lopez@gmail.com">edup.lopez@gmail.com</a></dd>
+              </div>
+              <div>
+                <dt>teléfono</dt>
+                <dd><a href="tel:+34648500255">+34 648 500 255</a></dd>
+              </div>
+              <div>
+                <dt>ubicación</dt>
+                <dd>A Coruña, Galicia · remoto sin problema</dd>
+              </div>
+              <div>
+                <dt>github</dt>
+                <dd><a href="https://github.com/eduplopez" target="_blank"
+                    rel="noopener noreferrer">github.com/eduplopez</a></dd>
+              </div>
+              <div>
+                <dt>linkedin</dt>
+                <dd><a href="https://www.linkedin.com/in/eduardo-pablo-inlopez-sanchez" target="_blank"
+                    rel="noopener noreferrer">linkedin.com/in/eduardo-pablo…</a></dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="reveal">
+            <form id="form-contacto" action="https://formspree.io/f/mrpzokzo" method="POST" novalidate>
+              <input class="gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <input type="hidden" name="_subject" value="Contacto desde la web de Eduardo López">
+              <div class="campo">
+                <label for="f-nombre">nombre</label>
+                <input id="f-nombre" name="nombre" type="text" required minlength="2" autocomplete="name">
+                <span class="error" id="e-nombre" role="alert"></span>
+              </div>
+              <div class="campo">
+                <label for="f-email">email</label>
+                <input id="f-email" name="email" type="email" required autocomplete="email">
+                <span class="error" id="e-email" role="alert"></span>
+              </div>
+              <div class="campo">
+                <label for="f-mensaje">mensaje</label>
+                <textarea id="f-mensaje" name="mensaje" required minlength="10"></textarea>
+                <span class="error" id="e-mensaje" role="alert"></span>
+              </div>
+              <button class="btn btn-solido" type="submit">[ enviar_mensaje ]</button>
+            </form>
+            <div id="form-ok" hidden>
+              <h3>✔ mensaje enviado correctamente</h3>
+              <p>Gracias por escribir. Te responderé en menos de 24 horas.</p>
+              <button type="button" id="form-reset">escribir otro mensaje</button>
+            </div>
+            <div id="form-error" hidden>
+              <h3>✖ no se pudo enviar el mensaje</h3>
+              <p>Inténtalo de nuevo en unos segundos, o escríbeme directamente a
+                <a href="mailto:edup.lopez@gmail.com">edup.lopez@gmail.com</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ PIE ============ -->
+  <footer>
+    <div class="contenedor">
+      <div class="pie-grid">
+        <div>
+          <h4>edulopez.dev</h4>
+          <p>Desarrollo multiplataforma, backend e IA aplicada desde A Coruña. Esta web funciona como mi currículum
+            interactivo: todo lo que necesitas saber está aquí.</p>
+        </div>
+        <div>
+          <h4>mapa del sitio</h4>
+          <ul>
+            <li><a href="#sobre-mi">sobre_mí</a></li>
+            <li><a href="#stack">stack</a></li>
+            <li><a href="#proyectos">proyectos</a></li>
+            <li><a href="#servicios">servicios</a></li>
+            <li><a href="#idiomas">idiomas</a></li>
+            <li><a href="#contacto">contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>enlaces</h4>
+          <ul>
+            <li><a href="https://github.com/eduplopez" target="_blank" rel="noopener noreferrer">github ↗</a></li>
+            <li><a href="https://www.linkedin.com/in/eduardo-pablo-inlopez-sanchez" target="_blank"
+                rel="noopener noreferrer">linkedin ↗</a></li>
+            <li><a href="mailto:edup.lopez@gmail.com">email →</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pie-bajo">
+        <span>© 2026 Eduardo Pablo López Sánchez · compilado con HTML + CSS + JS vanilla</span>
+        <span>sin cookies · sin rastreadores · integridad <span class="ok">[ OK ]</span></span>
+      </div>
+    </div>
+  </footer>
+
+  <button id="arriba" aria-label="Volver arriba">↑ subir</button>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>
